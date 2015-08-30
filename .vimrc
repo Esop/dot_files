@@ -1,5 +1,9 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-scripts/dbext.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'junegunn/vim-xmark', { 'do': 'make'  }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install'  }
 Plug 'Shougo/neocomplete.vim'
 
@@ -42,7 +46,6 @@ Plug 'dockyard/vim-easydir'
 Plug 'ervandew/supertab'
 Plug 'matchit.zip'
 Plug 'tommcdo/vim-exchange'
-Plug 'kien/rainbow_parentheses.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'thoughtbot/vim-rspec'
 Plug 'vim-scripts/ZoomWin'
@@ -68,18 +71,14 @@ call plug#end()
 set t_Co=256
 set t_ut=
 
-" set background=dark
-set background=light
+set background=dark
+" set background=light
 
-" colorscheme base16-atelierlakeside
-" colorscheme base16-atelierdune
-" colorscheme base16-atelierforest
-" colorscheme base16-atelierheath
- colorscheme base16-atelierseaside
-" colorscheme base16-solarized
-" colorscheme spacegray
-" colorscheme pencil
-" let g:pencil_higher_contrast_ui = 1   " 0=low (def), 1=high
+" this is the best one
+colorscheme base16-atelierheath
+" colorscheme base16-ashes
+" colorscheme base16-3024
+" colorscheme base16-isotope
 
 """"""""""""""""""""""
 "" Yank/Paste """"
@@ -277,8 +276,8 @@ nnoremap <C-H> <C-W><C-H>
 """"""""""""""""""""""
 "" show hidden """"
 """"""""""""""""""""""
-" set list listchars=tab:»·,trail:•
-set list listchars=tab:»·,trail:¬
+set list listchars=tab:»·,trail:•
+" set list listchars=tab:»·,trail:¬
 set showbreak=â†ª
 
 
@@ -425,11 +424,14 @@ set foldlevel=1
 """"""""""""""""""""""
 "" rainbow parensheses """"
 """"""""""""""""""""""
-let g:rbpt_max = 16
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+
+augroup rainbow_lisp
+    autocmd!
+      autocmd FileType ruby,javascript,elm,elixir RainbowParentheses
+    augroup END
+augroup END
 
 
 " automatically rebalance windows on vim resize
@@ -471,7 +473,7 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_enable_signs = 1
 let g:syntastic_check_on_open = 1
 
-let g:syntastic_javascript_checkers = ['jshint', 'jslit', 'eslint']
+let g:syntastic_javascript_checkers = ['jshint', 'jslint', 'eslint']
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
 let g:syntastic_handlebars_checkers=['handlebars']
 let g:syntastic_handlebars_exec = 'Users/Bokeh/.nvm/versions/node/v0.12.0/bin/handlebars'
@@ -497,9 +499,11 @@ nmap ga <Plug>(EasyAlign)
 
 
 """"""""""""""""""""""
-"" update plugins """"
+"" plug mappings """"
 """"""""""""""""""""""
-map <leader>u :PlugUpdate<cr>
+map <leader>pu :PlugUpdate<cr>
+map <leader>pi :PlugInstall<cr>
+map <leader>pc :PlugClean<cr>
 
 """"""""""""""""""""""
 "" quick escape """"
@@ -527,11 +531,13 @@ nnoremap <leader>em :ElmMakeCurrentFile<CR>
 "" table-mode """"
 """"""""""""""""""""""
 nmap <leader>tm :TableModeToggle<cr>
+" let g:table_mode_corner_corner="+"
+" let g:table_mode_header_fillchar="="
 
 
-""""""""""""""""""""""
-"" yank to system """"
-""""""""""""""""""""""
+""""""""""""""""""""""""""""""
+"" yank to system clipboard """"
+""""""""""""""""""""""""""""""
 vnoremap<C-y> "*yq
 
 """"""""""""""""""""""
@@ -547,3 +553,19 @@ let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+""""""""""""""""""""""
+"" Xmark """"
+""""""""""""""""""""""
+nnoremap <leader>xm :Xmark<cr>
+
+""""""""""""""""""""""
+"" dbtext """"
+"""""""""""""""""""
+" let dbext_default_profile=""
+" let dbext_default_type="MYSQL"
+let dbext_default_user="root"
+let dbext_default_passwd=""
+let dbext_default_dbname="website"
+" let dbext_default_host="localhost"
+" let dbext_default_buffer_lines=20
