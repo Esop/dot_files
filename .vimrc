@@ -429,7 +429,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
 augroup rainbow_lisp
     autocmd!
-      autocmd FileType ruby,javascript,elm,elixir RainbowParentheses
+      autocmd FileType ruby,js,javascript,elm,elixir RainbowParentheses
     augroup END
 augroup END
 
