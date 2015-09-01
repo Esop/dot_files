@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
 # for autojump
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# for bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
 
 # Path to the bash it configuration
 export BASH_IT="$HOME/.bash_it"
@@ -90,6 +96,10 @@ alias ho="heroku open"
 alias pss="powder -o"
 alias pop="powder open"
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 
 #Open current directory
 alias o="open ."
