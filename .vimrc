@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-scripts/dbext.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-xmark', { 'do': 'make'  }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install'  }
@@ -369,23 +368,23 @@ let g:tmuxline_preset = {
 """"""""""""""""""""""
 "" strip whitespace ""
 """"""""""""""""""""""
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " CLEAN UP: RESTORE PREVIOUS SEARCH HISTORY, AND CURSOR POSITION
-    let @/=_s
-    call cursor(l, c)
-endfunction
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+" function! <SID>StripTrailingWhitespaces()
+"     " Preparation: save last search, and cursor position.
+"     let _s=@/
+"     let l = line(".")
+"     let c = col(".")
+"     " Do the business:
+"     %s/\s\+$//e
+"     " CLEAN UP: RESTORE PREVIOUS SEARCH HISTORY, AND CURSOR POSITION
+"     let @/=_s
+"     call cursor(l, c)
+" endfunction
+" autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 """"""""""""""""""""""
 "" remove tabs """"
 """"""""""""""""""""""
-nnoremap <leader><leader>d :%s/\t/  /g<cr>
+" nnoremap <leader><leader>d :%s/\t/  /g<cr>
 
 
 """"""""""""""""""""""
@@ -558,14 +557,3 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 "" Xmark """"
 """"""""""""""""""""""
 nnoremap <leader>xm :Xmark<cr>
-
-""""""""""""""""""""""
-"" dbtext """"
-"""""""""""""""""""
-" let dbext_default_profile=""
-" let dbext_default_type="MYSQL"
-let dbext_default_user="root"
-let dbext_default_passwd=""
-let dbext_default_dbname="website"
-" let dbext_default_host="localhost"
-" let dbext_default_buffer_lines=20

@@ -96,10 +96,21 @@ alias ho="heroku open"
 alias pss="powder -o"
 alias pop="powder open"
 
+# Be considerate
+alias vi=vim
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias ls='\ls -F $LS_OPTIONS'
+alias ll='\ls -aFl $LS_OPTIONS'
+alias lsd='\ls -ald $LS_OPTIONS * | egrep "^d"'
+alias psg="ps -auxww | grep -i "
+alias +='pushd .'
+alias _='popd'
+
+#enable vi command line editing
+set -o vi
 
 #Open current directory
 alias o="open ."
