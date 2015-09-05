@@ -211,6 +211,7 @@ nmap <Leader>rn   :!node %<cr>
 let g:ackhighlight = 1
 " Highlight and Ack for the word under the cursor
 nnoremap <leader>a    *<C-O>:AckFromSearch!<CR>
+nmap <leader>ac :Ack<space>
 " Ack for the current selection
 vnoremap <leader>a    "dy:Ack!<space>'<C-r>d'<CR>
 " use silver-searhcer with ack-vim
@@ -292,8 +293,8 @@ set showbreak=â†ª
 """"""""""""""""""""""
 ""  relative numbers """"
 """"""""""""""""""""""
-set relativenumber
-" set number
+" set relativenumber
+set number
 set numberwidth=1
 
 
