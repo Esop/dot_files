@@ -153,9 +153,9 @@ nmap <Leader>gs :Gstatus<cr>
 nmap <Leader>gc :Gcommit<cr>
 nmap <Leader>gl :Git log<cr>
 nmap <Leader>gco :Git checkout<Space>
-nmap <Leader>gha :Git hist --all<cr>
+nmap <Leader>gh :Git hist --all<cr>
 nmap <Leader>gh :Git hist<cr>
-nmap <Leader>gdc :Git diff %<cr>
+nmap <Leader>gd :Git diff %<cr>
 nmap <Leader>gb :Gblame %<cr>
 
 """"""""""""""""""""""
@@ -172,9 +172,10 @@ map <F8> :TagbarToggle<CR>
 "" tmux-runner """"
 """"""""""""""""""""""
 let g:rspec_command = "Dispatch rspec {spec}"
-nmap <leader>osr :VtrOpenRunner {'orientation': 'v', 'percentage': 50}<cr>
+nmap <leader>vr :VtrOpenRunner {'orientation': 'v', 'percentage': 50}<cr>
+nmap <leader>hr :VtrOpenRunner {'orientation': 'h', 'percentage': 50}<cr>
 nmap <leader>oex :VtrOpenRunner {'orientation': 'v', 'percentage': 50, 'cmd': 'iex'}<cr>
-nmap <leader>ki :VtrKillRunner<cr>
+nmap <leader>kr :VtrKillRunner<cr>
 
 
 """"""""""""""""""""""
@@ -195,7 +196,7 @@ map <Leader>vq :VimuxCloseRunner<CR>
 " map <Leader>rl :VimuxRunLastCommand<CR>
 " map <Leader>vz :call VimuxZoomRunner()<CR>
 " let g:VimuxOrientation = "v"
-" let g:VimuxHeight = "45"
+let g:VimuxHeight = "75"
 
 """"""""""""""""""""""
 "" mappings """"
@@ -276,9 +277,9 @@ nnoremap <C-H> <C-W><C-H>
 """"""""""""""""""""""
 "" show hidden """"
 """"""""""""""""""""""
-set list listchars=tab:»·,trail:•
-" set list listchars=tab:»·,trail:¬
-set showbreak=â†ª
+" set list listchars=tab:»·,trail:•
+" " set list listchars=tab:»·,trail:¬
+" set showbreak=â†ª
 
 
 """"""""""""""""""""""""""""""""""""""""""
@@ -286,8 +287,8 @@ set showbreak=â†ª
 """"""""""""""""""""""""""""""""""""""""""
 
 " if uncommented cursorcoloumn, color is too wide
-" set cursorcolumn
-" set cursorline
+set cursorcolumn
+set cursorline
 
 
 """"""""""""""""""""""
@@ -319,6 +320,7 @@ set wildignore+=vendor,log,tmp,*.swp,.git,gems,.bundle,Gemfile.lock,.gem,.rvmrc,
 """"""""""""""""""""""
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsUsePythonVersion = 2
+nnoremap <Leader>sn :UltiSnipsEdit<cr>
 
 
 " use ag (https://github.com/ggreer/the_silver_searcher) instead of grep when
@@ -547,14 +549,41 @@ vnoremap<C-y> "*yq
 " Disable AutoComplPop.
 " let g:acp_enableAtStartup = 0
 " Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
 " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 """"""""""""""""""""""
 "" Xmark """"
 """"""""""""""""""""""
 nnoremap <leader>xm :Xmark<cr>
+
+
+"""""""""""""""""""""""""""""
+""  remap the tab movement ""
+"""""""""""""""""""""""""""""
+map <Leader>l gt
+map <leader>r gT
+
+"----------------------------------------------------------------
+" Dispatch
+"----------------------------------------------------------------
+" nnoremap <leader>d :Dispatch<space>
+"----------------------------------------------------------------
+" Test runner
+"----------------------------------------------------------------
+let test#strategy = "dispatch"
+nmap <silent> <leader>t :Dispatch ruby -Itest %<cr>
+" nmap <silent> <leader>T :TestFile<CR>
+" nmap <silent> <leader>a :TestSuite<CR>
+" nmap <silent> <leader>l :TestLast<CR>
+" nmap <silent> <leader>g :TestVisit<CR>
+
+"----------------------------------------------------------------
+" open old files
+"----------------------------------------------------------------
+map <leader>bo :browse old<cr>
+
