@@ -1,5 +1,10 @@
+set nocompatible
 call plug#begin('~/.vim/plugged')
-
+Plug 'sjl/badwolf/'
+Plug 'edkolev/tmuxline.vim'
+Plug 'bling/vim-airline'
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-xmark', { 'do': 'make'  }
@@ -14,7 +19,6 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/vim-maximizer'
 Plug 'majutsushi/tagbar'
-Plug 'bling/vim-airline'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-fugitive'
@@ -30,7 +34,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-gitgutter'
 Plug 'danro/rename.vim'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'edkolev/tmuxline.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'benmills/vimux'
@@ -68,15 +71,18 @@ call plug#end()
 """"""""""""""""""""""
 " let base16colorspace=256 " Access colors present in 256 colorspace. Must be before colorscheme declaration
 set t_Co=256
-set t_ut=
+" set t_ut=
 
 set background=dark
 " set background=light
 
 " this is the best one
-colorscheme base16-atelierheath
+ colorscheme base16-atelierheath
+ colorscheme badwolf
+ " colorscheme solarized
 " colorscheme base16-ashes
 " colorscheme base16-3024
+ " colorscheme gruvbox
 " colorscheme base16-isotope
 
 """"""""""""""""""""""
@@ -107,7 +113,7 @@ set guioptions-=m
 set nocompatible
 set laststatus=2
 set encoding=utf-8
-" set cursorline
+set cursorline
 set showmode
 set ruler
 set hlsearch
@@ -222,10 +228,9 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 """"""""""""""""""""""
 "" notes """"
 """"""""""""""""""""""
-map <Leader>nn :sp ~/Dropbox/notes/programming_notes.md<cr>
-map <Leader>ng :sp ~/Dropbox/notes/gems.md<cr>
-map <Leader>td :sp ~/Dropbox/notes/todo.md<cr>
-map <Leader>ns :sp ~/Dropbox/notes/scratch_paper.txt<cr>
+" map <Leader>nn :sp ~/Dropbox/notes/programming_notes.md<cr>
+map <Leader>nn :sp $HOME/BitTorrent\ Sync/work_notes/work_notes.md<cr>
+map <Leader>ns :sp $HOME/BitTorrent\ Sync/work_notes/scratch.txt<cr>
 
 
 """"""""""""""""""""""
@@ -338,20 +343,29 @@ nmap k gk
 """"""""""""""""""""""
 "" vim-airline """"
 """"""""""""""""""""""
+
+let g:airline_powerline_fonts= 1
+" let g:airline_theme             		= 'base16'
+let g:airline_extension_enable_branch= 1
+let g:airline_extension_syntastic_enabled= 1
+
+" vim-powerline symbols
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+	let g:airline_symbols = {}
 endif
-let g:airline_symbols.space = "\ua0"
 
-" let g:airline_theme= 'pencil'
-let g:airline#extensions#tmuxline#enabled = 1
-let g:airline_powerline_fonts=1
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#hunks#enabled=0
-let g:airline_section_x =''
-let g:airline_section_y =''
-
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 """"""""""""""""""""""
 "" tmux-line """"
 """"""""""""""""""""""
@@ -585,5 +599,7 @@ nmap <silent> <leader>t :Dispatch ruby -Itest %<cr>
 "----------------------------------------------------------------
 " open old files
 "----------------------------------------------------------------
-map <leader>bo :browse old<cr>
+nmap <leader>bo :browse old<cr>
 
+" highlight last inserted text
+nnoremap gV `[v`]

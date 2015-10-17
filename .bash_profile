@@ -2,7 +2,7 @@
 
 # for autojump
 
-# [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # for bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -14,7 +14,7 @@ export BASH_IT="$HOME/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='DoubleTime'
+export BASH_IT_THEME='mbriggs'
 
 # Your place for hosting Git repos. I use this for private repos.
 export GIT_HOSTING='git@git.domain.com'
@@ -35,6 +35,7 @@ export SCM_CHECK=true
 # https://github.com/xvzf/vcprompt
 #export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
 
+# alias vim=nvim
 alias eg="ember generate"
 alias ls="ls -GF"
 
@@ -110,7 +111,7 @@ alias +='pushd .'
 alias _='popd'
 
 #enable vi command line editing
-set -o vi
+# set -o vi
 
 #Open current directory
 alias o="open ."
